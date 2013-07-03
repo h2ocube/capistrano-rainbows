@@ -5,27 +5,27 @@
 # Set your full path to application.
 app_path = "/path/to/app"
 
-# Set unicorn options
+# Set rainbows options
 worker_processes 1
 preload_app true
 timeout 180
 listen "127.0.0.1:9000"
 
-# Spawn unicorn master worker for user apps (group: apps)
-user 'apps', 'apps' 
+# Spawn rainbows master worker for user apps (group: apps)
+user 'apps', 'apps'
 
 # Fill path to your app
 working_directory app_path
 
-# Should be 'production' by default, otherwise use other env 
+# Should be 'production' by default, otherwise use other env
 rails_env = ENV['RAILS_ENV'] || 'production'
 
 # Log everything to one file
-stderr_path "log/unicorn.log"
-stdout_path "log/unicorn.log"
+stderr_path "log/rainbows.log"
+stdout_path "log/rainbows.log"
 
 # Set master PID location
-pid "#{app_path}/tmp/pids/unicorn.pid"
+pid "#{app_path}/tmp/pids/rainbows.pid"
 
 before_fork do |server, worker|
   ActiveRecord::Base.connection.disconnect!
